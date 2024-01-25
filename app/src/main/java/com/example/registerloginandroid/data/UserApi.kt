@@ -6,5 +6,5 @@ import retrofit2.http.POST
 
 interface UserApi {
     @POST("users")
-    fun registerUser(@Body user: User): User
+    suspend fun registerUser(@Body user: User): User
 }

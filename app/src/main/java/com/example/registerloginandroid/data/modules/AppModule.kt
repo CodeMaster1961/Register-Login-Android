@@ -1,10 +1,10 @@
-package com.example.registerloginandroid.data.Modules
+package com.example.registerloginandroid.data.modules
 
-import com.example.registerloginandroid.data.Constants.BASE_URL
+import com.example.registerloginandroid.util.Constants.BASE_URL
 import com.example.registerloginandroid.data.UserApi
 import com.example.registerloginandroid.data.repository.UserRepository
 import com.example.registerloginandroid.data.repositoryImplementations.UserRepositoryImplementation
-import com.example.registerloginandroid.ui.screens.RegisterViewModel
+import com.example.registerloginandroid.ui.screens.registerScreen.RegisterViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -23,7 +23,7 @@ val appModule = module {
         UserRepositoryImplementation(get())
     }
 
-    viewModel {
+    viewModel<RegisterViewModel> {
         RegisterViewModel(get())
     }
 }

@@ -3,7 +3,6 @@ package com.example.registerloginandroid.data.repositoryImplementations
 import com.example.registerloginandroid.data.UserApi
 import com.example.registerloginandroid.data.models.User
 import com.example.registerloginandroid.data.repository.UserRepository
-
 class UserRepositoryImplementation(
     private val api: UserApi
 ) : UserRepository {
