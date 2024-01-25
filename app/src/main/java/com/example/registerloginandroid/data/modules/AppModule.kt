@@ -10,6 +10,10 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+/**
+ * the app module for koin
+ * @author Ömer Aynaci
+ */
 val appModule = module {
     single {
         Retrofit.Builder()

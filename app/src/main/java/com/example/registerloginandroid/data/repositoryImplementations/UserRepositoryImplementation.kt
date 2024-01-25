@@ -7,6 +7,12 @@ class UserRepositoryImplementation(
     private val api: UserApi
 ) : UserRepository {
 
+    /**
+     * creates a user
+     * @author Ömer Aynaci
+     * @param user the user data model
+     * @return user data model
+     */
     override suspend fun registerUser(user: User): User {
         return api.registerUser(user)
     }

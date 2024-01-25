@@ -9,6 +9,14 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.registerloginandroid.ui.screens.homescreen.HomeDestination
+import com.example.registerloginandroid.ui.screens.homescreen.HomeScreen
+import com.example.registerloginandroid.ui.screens.registerScreen.RegisterDestination
 import com.example.registerloginandroid.ui.screens.registerScreen.RegisterScreen
 import com.example.registerloginandroid.ui.screens.registerScreen.RegisterViewModel
 import com.example.registerloginandroid.ui.theme.RegisterLoginAndroidTheme
@@ -25,9 +33,23 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val viewModel = getViewModel<RegisterViewModel>()
-                    RegisterScreen(viewModel = viewModel)
-//                    RegisterApp()
+                    val navHostController = rememberNavController()
+                    NavHost(
+                        navController = navHostController,
+                        startDestination = HomeDestination.route
+                    ) {
+                        composable(route = HomeDestination.route) {
+                            HomeScreen(navigateToRegistration = {
+                                navHostController.navigate(
+                                    RegisterDestination.route
+                                )
+                            })
+                        }
+                        composable(route = RegisterDestination.route) {
+                            val viewModel = getViewModel<RegisterViewModel>()
+                            RegisterScreen(viewModel)
+                        }
+                    }
                 }
             }
         }
