@@ -16,6 +16,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.registerloginandroid.ui.screens.homescreen.HomeDestination
 import com.example.registerloginandroid.ui.screens.homescreen.HomeScreen
+import com.example.registerloginandroid.ui.screens.loginScreen.LoginDestination
+import com.example.registerloginandroid.ui.screens.loginScreen.LoginScreen
+import com.example.registerloginandroid.ui.screens.loginScreen.LoginViewModel
 import com.example.registerloginandroid.ui.screens.registerScreen.RegisterDestination
 import com.example.registerloginandroid.ui.screens.registerScreen.RegisterScreen
 import com.example.registerloginandroid.ui.screens.registerScreen.RegisterViewModel
@@ -30,24 +33,28 @@ class MainActivity : ComponentActivity() {
             RegisterLoginAndroidTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
                     val navHostController = rememberNavController()
                     NavHost(
-                        navController = navHostController,
-                        startDestination = HomeDestination.route
+                        navController = navHostController, startDestination = HomeDestination.route
                     ) {
                         composable(route = HomeDestination.route) {
                             HomeScreen(navigateToRegistration = {
                                 navHostController.navigate(
                                     RegisterDestination.route
                                 )
+                            }, navigateToLogin = {
+                                navHostController.navigate(LoginDestination.route)
                             })
                         }
                         composable(route = RegisterDestination.route) {
                             val viewModel = getViewModel<RegisterViewModel>()
                             RegisterScreen(viewModel)
+                        }
+                        composable(route = LoginDestination.route) {
+                            val viewModel = getViewModel<LoginViewModel>()
+                            LoginScreen(viewModel = viewModel)
                         }
                     }
                 }

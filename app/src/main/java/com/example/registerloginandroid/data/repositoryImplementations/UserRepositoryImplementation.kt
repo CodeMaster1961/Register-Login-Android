@@ -1,6 +1,7 @@
 package com.example.registerloginandroid.data.repositoryImplementations
 
 import com.example.registerloginandroid.data.UserApi
+import com.example.registerloginandroid.data.models.Login
 import com.example.registerloginandroid.data.models.User
 import com.example.registerloginandroid.data.repository.UserRepository
 class UserRepositoryImplementation(
@@ -15,5 +16,9 @@ class UserRepositoryImplementation(
      */
     override suspend fun registerUser(user: User): User {
         return api.registerUser(user)
+    }
+
+    override suspend fun loginUser(loginUser: Login): Login {
+        return api.loginUser(loginUser)
     }
 }
